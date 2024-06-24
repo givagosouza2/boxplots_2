@@ -17,7 +17,7 @@ if uploaded_file is not None:
     df = pd.read_csv(uploaded_file)
 
     # Verificar se o arquivo tem pelo menos 4 colunas
-    if df.shape[1] >= 4:
+    if df.shape[1] >= 3:
         # Ajuste do eixo
         y_axis_scale = st.selectbox("Escala do eixo Y", ["linear", "log"])
 
@@ -31,12 +31,12 @@ if uploaded_file is not None:
             
             sns.boxplot(data=df, ax=ax, palette=palette)
             ax.set_yscale(y_axis_scale)
-            ax.set_xlabel('Protocols')
+            ax.set_xlabel('Age groups')
             ax.set_ylim(0,80)
             ax.set_ylabel('Luminance contrast (%)')
             plt.xticks(rotation=0)
             st.pyplot(fig)
     else:
-        st.error("O arquivo CSV deve conter pelo menos 4 colunas.")
+        st.error("O arquivo CSV deve conter pelo menos 3 colunas.")
 else:
     st.info("Por favor, carregue um arquivo CSV para começar.")
